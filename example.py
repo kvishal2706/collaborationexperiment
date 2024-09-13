@@ -1,25 +1,23 @@
-"Initial commit"
+# --------------------------------------------------------------
+#  author @devesh
+def insertionSort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
 
-# Mourya Kakarapu
-print('Messi GOAT')
-#author geeta
-def add(a ,b):
-    return a+b
-"Initial commit"
-def print_message():
-    print("Hello from Devesh's branch!")
+def printArray(arr):
+    for i in range(len(arr)):
+        print(arr[i], end=" ")
+    print()
 
-print_message()
+if __name__ == "__main__":
+    arr = [12, 11, 13, 5, 6]
+    insertionSort(arr)
+    printArray(arr)
 
-print("sujith has contributed")
-print("Sriram")
-# Aayushi Sinha
-def Fibonacci(n):
-	if n<= 0:
-		print("Incorrect input")
-	elif n == 1:
-		return 0
-	elif n == 2:
-		return 1
-	else:
-		return Fibonacci(n-1)+Fibonacci(n-2)
+# --------------------------------------------------------------
