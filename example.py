@@ -1,3 +1,10 @@
+#  author @aayushi
+def linearSearch(arr, x):
+	for i in range(len(arr)):
+		if arr[i] == x:
+			return f"Element {x} found at index {i}"
+	return f"Element {x} not found"
+
 # --------------------------------------------------------------
 #  author @devesh
 def insertionSort(arr):
@@ -15,9 +22,12 @@ def printArray(arr):
         print(arr[i], end=" ")
     print()
 
+# --------------------------------------------------------------
+
 if __name__ == "__main__":
     arr = [12, 11, 13, 5, 6]
     insertionSort(arr)
     printArray(arr)
-
-# --------------------------------------------------------------
+    
+    print(linearSearch(arr, 13))
+    print(linearSearch(arr, 23))    
