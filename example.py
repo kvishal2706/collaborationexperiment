@@ -33,6 +33,22 @@ def printArray(arr):
     print()
 
 # --------------------------------------------------------------
+# --------------------------------------------------------------
+#  author @Geeta
+def binary_search_iterative(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        
+        if arr[mid] == target:
+            return mid  # Target found at index mid
+        elif arr[mid] < target:
+            left = mid + 1  # Search in the right half
+        else:
+            right = mid - 1  # Search in the left half
+    
+    return -1  # Target not found
 
 # --------------------------------------------------------------
 #  author @sujith
