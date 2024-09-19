@@ -33,6 +33,29 @@ def printArray(arr):
     print()
 
 # --------------------------------------------------------------
+# author @Karan
+def partition(arr, low, high):
+    pivot = arr[high]
+    
+    i = low - 1
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+def print_array(arr):
+    for i in arr:
+        print(i, end=" ")
+    print()
+
 # --------------------------------------------------------------
 #  author @Geeta
 def binary_search_iterative(arr, target):
@@ -117,6 +140,10 @@ if __name__ == "__main__":
     arr1 = [1,2,45,7,9,4]
     selectionSort(arr1)
     printArray(arr1)
+
+    quick_sort(arr, 0, len(arr) - 1)
+    print("\nSorted array using quick-sort is")
+    print_array(arr)
       
     
     arr = [64, 34, 25, 12, 22, 11, 90]
@@ -159,6 +186,29 @@ def printArray(arr):
     print()
 
 # --------------------------------------------------------------
+# author @Karan
+def partition(arr, low, high):
+    pivot = arr[high]
+    
+    i = low - 1
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+def print_array(arr):
+    for i in arr:
+        print(i, end=" ")
+    print()
+    
 # --------------------------------------------------------------
 #  author @Geeta
 def binary_search_iterative(arr, target):
@@ -244,7 +294,10 @@ if __name__ == "__main__":
     selectionSort(arr1)
     printArray(arr1)
       
-    
+    quick_sort(arr, 0, len(arr) - 1)
+    print("\nSorted array using quick-sort is")
+    print_array(arr)
+
     arr = [64, 34, 25, 12, 22, 11, 90]
     sorted_arr = bubble_sort(arr)
     print("Bubble Sorted array:", sorted_arr) 
