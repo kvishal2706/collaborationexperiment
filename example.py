@@ -33,6 +33,42 @@ def printArray(arr):
     print()
 
 # --------------------------------------------------------------
+# author @Abhishikt
+def counting_sort(arr, exp):
+    n = len(arr)
+    output = [0] * n
+    count = [0] * 10
+
+    for i in range(n):
+        index = (arr[i] // exp) % 10
+        count[index] += 1
+
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    i = n - 1
+    while i >= 0:
+        index = (arr[i] // exp) % 10
+        output[count[index] - 1] = arr[i]
+        count[index] -= 1
+        i -= 1
+
+    for i in range(len(arr)):
+        arr[i] = output[i]
+
+def radix_sort(arr):
+    max_num = max(arr)
+    exp = 1
+    while max_num // exp > 0:
+        counting_sort(arr, exp)
+        exp *= 10
+
+def print_array(arr):
+    for i in arr:
+        print(i, end=" ")
+    print()
+
+# --------------------------------------------------------------
 # author @Karan
 def partition(arr, low, high):
     pivot = arr[high]
@@ -183,4 +219,11 @@ if __name__ == "__main__":
     heap_sort(arr4)
     print("Heap Sorted array is:", arr4)
     
+    arr5 = [170, 45, 75, 90, 802, 24, 2, 66]
+    print("Original array:")
+    print_array(arr5)
+
+    radix_sort(arr5)
     
+    print("Sorted array:")
+    print_array(arr5)
