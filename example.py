@@ -26,6 +26,7 @@ def insertionSort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
+    return arr
 
 def printArray(arr):
     for i in range(len(arr)):
@@ -62,11 +63,8 @@ def radix_sort(arr):
     while max_num // exp > 0:
         counting_sort(arr, exp)
         exp *= 10
+    return arr
 
-def print_array(arr):
-    for i in arr:
-        print(i, end=" ")
-    print()
 
 # --------------------------------------------------------------
 # author @Karan
@@ -86,15 +84,12 @@ def quick_sort(arr, low, high):
         pi = partition(arr, low, high)
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
-
-def print_array(arr):
-    for i in arr:
-        print(i, end=" ")
-    print()
+    return arr
 
 # --------------------------------------------------------------
 #  author @Geeta
 def binary_search_iterative(arr, target):
+    arr.sort()
     left, right = 0, len(arr) - 1
     
     while left <= right:
@@ -121,6 +116,7 @@ def selectionSort(arr):
 
         # Swap the found minimum element with the first element of the unsorted array
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
 
 
 # --------------------------------------------------------------
@@ -156,11 +152,7 @@ def merge_sort(arr):
             arr[k] = R[j]
             j += 1
             k += 1
-
-def merge_sort_print(arr):
-    print("Original array:", arr)
-    merge_sort(arr)
-    print("Merge Sorted array:", arr)
+    return arr
     
 # --------------------------------------------------------------
 #  author @Nupur - Code for Heap Sort Algorithm
@@ -188,42 +180,95 @@ def heap_sort(arr):
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
-#done 
-# --------------------------------------------------------------
+    return arr
+
+
+#  author @Vishal - # Driver code with menu-based interface
+def main():
+    while True:
+        print("\n--- Menu ---")
+        print("Press 1 for Sorting Algorithms")
+        print("Press 2 for Searching Algorithms")
+        print("Press 0 to Exit")
+        choice = int(input("Enter your choice: "))
+
+        if choice == 0:
+            print("Exiting...")
+            break
+
+        # Taking array input
+        n = int(input("Enter the size of the array: "))
+        arr = []
+        print("Input the array elements one by one (press enter after each):")
+
+        for i in range(n):
+            arr.append(int(input()))
+
+        if choice == 1:
+            print("\n--- Sorting Algorithms ---")
+            print("1. Bubble Sort")
+            print("2. Insertion Sort")
+            print("3. Selection Sort")
+            print("4. Merge Sort")
+            print("5. Quick Sort")
+            print("6. Radix Sort")
+            print("7. Heap Sort")
+            algo_choice = int(input("Choose a sorting algorithm: "))
+
+            if algo_choice == 1:
+                print("Bubble Sort Result:")
+                arr = bubble_sort(arr)
+                printArray(arr)
+            elif algo_choice == 2:
+                print("Insertion Sort Result:")
+                arr = insertionSort(arr)
+                printArray(arr)
+            elif algo_choice == 3:
+                print("Selection Sort Result:")
+                arr = selectionSort(arr)
+                printArray(arr)
+            elif algo_choice == 4:
+                print("Merge Sort Result:")
+                arr = merge_sort(arr)
+                printArray(arr)
+            elif algo_choice == 5:
+                print("Quick Sort Result:")
+                arr = quick_sort(arr, 0, len(arr) - 1)
+                printArray(arr)
+            elif algo_choice == 6:
+                print("Radix Sort Result:")
+                arr = radix_sort(arr)
+                printArray(arr)
+            elif algo_choice == 7:
+                print("Heap Sort Result:")
+                arr = heap_sort(arr)
+                printArray(arr)
+            else:
+                print("Invalid sorting choice")
+
+        elif choice == 2:
+            print("\n--- Searching Algorithms ---")
+            print("1. Linear Search")
+            print("2. Binary Search (Iterative)")
+            algo_choice = int(input("Choose a searching algorithm: "))
+            target = int(input("Enter the target element to search: "))
+
+            if algo_choice == 1:
+                result = linearSearch(arr, target)
+                print(result)
+            elif algo_choice == 2:
+                # Sorting the array first for binary search
+                arr.sort()
+                result = binary_search_iterative(arr, target)
+                if result != -1:
+                    print(f"Element {target} found at index {result}")
+                else:
+                    print(f"Element {target} not found")
+            else:
+                print("Invalid searching choice")
+
+        else:
+            print("Invalid choice. Please select from the menu.")
 
 if __name__ == "__main__":
-    arr = [12, 11, 13, 5, 6]
-    insertionSort(arr)
-    printArray(arr)
-    
-    print(linearSearch(arr, 13))
-    print(linearSearch(arr, 23))    
-    
-    arr1 = [1,2,45,7,9,4]
-    selectionSort(arr1)
-    printArray(arr1)
-
-    quick_sort(arr, 0, len(arr) - 1)
-    print("\nSorted array using quick-sort is")
-    print_array(arr)
-      
-    
-    arr = [64, 34, 25, 12, 22, 11, 90]
-    sorted_arr = bubble_sort(arr)
-    print("Bubble Sorted array:", sorted_arr) 
-
-    arr2 = [38, 27, 43, 3, 9, 82, 10]
-    merge_sort_print(arr2)
-    
-    arr4 = [12, 11, 13, 5, 6, 7]
-    heap_sort(arr4)
-    print("Heap Sorted array is:", arr4)
-    
-    arr5 = [170, 45, 75, 90, 802, 24, 2, 66]
-    print("Original array:")
-    print_array(arr5)
-
-    radix_sort(arr5)
-    
-    print("Sorted array:")
-    print_array(arr5)
+    main()
